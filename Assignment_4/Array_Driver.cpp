@@ -2,7 +2,7 @@
 
 using namespace std;
 
-//Adds values into lists, using some kind of temp variable.
+//Adds values into lists, by shifting values and placing new value in the designated spot.
 
 int* array_add(int n, int input_value, int arr[], int position) {
     int i;
@@ -19,6 +19,8 @@ int* array_add(int n, int input_value, int arr[], int position) {
     return arr;
 }
 
+
+
 int* array_remove(int n, int arr[], int position) {
     int i;
 
@@ -28,9 +30,8 @@ int* array_remove(int n, int arr[], int position) {
         arr[i] = arr[i+1];
 
     }
-    
 
-    std::copy(arr, arr+std::min(n, n-1), new_arr );
+    std::copy(arr, arr+std::min(n, n-1), new_arr);
     delete [] arr;
     arr = new_arr;
 
@@ -42,10 +43,8 @@ int* array_remove(int n, int arr[], int position) {
 
 
 
-void array_position(int *arr) {
-    cout << arr[3];
-
-
+void array_position(int *arr, int position) {
+    cout << arr[position];
 }
 
 int main(int argc, char** argv) {
@@ -54,7 +53,6 @@ int main(int argc, char** argv) {
     int choice_value;
     int add_value;
     int remove_value;
-    int show_value;
     int index_value;
 
     cout << "Set array size: " << endl;
@@ -63,15 +61,19 @@ int main(int argc, char** argv) {
     int *num_array = new int[n] { };
 
     //Initialize array
-    for (i = 0; i < n; i++) 
+    for (i = 0; i < n; i++)  {
         num_array[i] = i + 1; 
+
+    }
     
     cout << "Would you like to add to, remove from, or show the contents of the array? (0 = Add, 1 = Remove, 2 Show)";
     cin >> choice_value;
+    
 
     switch (choice_value)
     {
     case 0:
+
         cout << "Enter value to add to array: ";
         cin >> add_value;
         cout << "Enter index to add value to array: ";
@@ -81,17 +83,20 @@ int main(int argc, char** argv) {
 
         break;
     case 1:
-        //cout << "Enter value to remove to array: ";
-        //cin >> remove_value;
+
         cout << "Enter index to remove value from array: ";
         cin >> index_value;
-        
-        array_remove(n, num_array, 4);
+        array_remove(n, num_array, index_value);
+
         break;
 
     case 2:
+
         cout << "Enter index of array to show: ";
-        cin >> show_value;
+        cin >> index_value;
+
+        array_position(num_array, index_value);
+
         break;
 
     default:
