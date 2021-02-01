@@ -21,37 +21,32 @@ int* array_add(int n, int input_value, int arr[], int position) {
 
 
 
-int* array_remove(int n, int arr[], int position) {
+int *array_remove(int n, int arr[], int position) {
     int i;
 
-    int *new_arr = new int[n];
+    int *new_arr = new int[n-1];
 
     n--;
-
-    cout << n;
 
     //Index is messing up and copying is messing up
 
     for (i = position - 1; i < n; i++) {
-        arr[i] = arr[i+1];
+        new_arr[i] = arr[i+1];
 
     }
 
-    for (i = 0; i <= n; i++) {
-        cout << arr[i] << " "; 
+    //std::copy(arr, arr+std::min(n, n-1), new_arr);
+    //delete [] arr;
+    //arr = new_arr;
+
+    for (i = position - 1; i < n; i++) {
+        arr[i] = new_arr[i];
+
     }
-
-    std::copy(arr, arr+std::min(n, n-1), new_arr);
-    delete [] arr;
-    arr = new_arr;
-
-
 
     return arr;
 
 }
-
-
 
 void array_position(int *arr, int position) {
     cout << arr[position];
@@ -76,6 +71,13 @@ int main(int argc, char** argv) {
 
     }
     
+    //Print array before
+    for (i = 0; i < n-1; i++) {
+        cout << num_array[i] << " "; 
+    }
+    
+    cout << endl;
+
     cout << "Would you like to add to, remove from, or show the contents of the array? (0 = Add, 1 = Remove, 2 Show)";
     cin >> choice_value;
     
@@ -117,11 +119,9 @@ int main(int argc, char** argv) {
     cout << endl;
 
     //Print array after
-    for (i = 0; i < n + 1; i++) {
+    for (i = 0; i < n; i++) {
         cout << num_array[i] << " "; 
     }
-
-    //array_remove(n, num_array, 4);
 
     cout << endl <<  "Goodbye.";
 
