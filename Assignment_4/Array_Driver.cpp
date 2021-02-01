@@ -26,9 +26,19 @@ int* array_remove(int n, int arr[], int position) {
 
     int *new_arr = new int[n];
 
+    n--;
+
+    cout << n;
+
+    //Index is messing up and copying is messing up
+
     for (i = position - 1; i < n; i++) {
         arr[i] = arr[i+1];
 
+    }
+
+    for (i = 0; i <= n; i++) {
+        cout << arr[i] << " "; 
     }
 
     std::copy(arr, arr+std::min(n, n-1), new_arr);
@@ -102,6 +112,9 @@ int main(int argc, char** argv) {
     default:
         break;
     }
+
+
+    cout << endl;
 
     //Print array after
     for (i = 0; i < n + 1; i++) {
