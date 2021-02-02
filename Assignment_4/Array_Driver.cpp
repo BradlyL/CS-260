@@ -4,6 +4,8 @@ using namespace std;
 
 //Adds values into lists, by shifting values and placing new value in the designated spot.
 
+//I have the remove function that doesn't print the whole array to show what it's supposed to do which is make the array smaller.
+
 int* array_add(int n, int input_value, int arr[], int position) {
     int i;
 
@@ -28,12 +30,13 @@ int *array_remove(int n, int arr[], int position) {
 
     n--;
 
-    //Index is messing up and copying is messing up
-
     for (i = position - 1; i < n; i++) {
         new_arr[i] = arr[i+1];
 
     }
+
+
+    //Decided against this operation as it is very expensive. (And it wasn't working lol)
 
     //std::copy(arr, arr+std::min(n, n-1), new_arr);
     //delete [] arr;
@@ -44,6 +47,8 @@ int *array_remove(int n, int arr[], int position) {
 
     }
 
+    arr[n] = -1;
+    
     return arr;
 
 }
@@ -60,10 +65,12 @@ int main(int argc, char** argv) {
     int remove_value;
     int index_value;
 
-    cout << "Set array size: " << endl;
+    cout << "Set array size: ";
     cin >> n;
 
     int *num_array = new int[n] { };
+
+    cout << endl;
 
     //Initialize array
     for (i = 0; i < n; i++)  {
@@ -77,8 +84,10 @@ int main(int argc, char** argv) {
     }
     
     cout << endl;
+    cout << endl;
 
-    cout << "Would you like to add to, remove from, or show the contents of the array? (0 = Add, 1 = Remove, 2 Show)";
+
+    cout << "Would you like to add to, remove from, or show the contents of the array? (0 = Add, 1 = Remove, 2 Show) ";
     cin >> choice_value;
     
 
@@ -119,6 +128,7 @@ int main(int argc, char** argv) {
     cout << endl;
 
     //Print array after
+    cout << "Resulting array: ";
     for (i = 0; i < n; i++) {
         cout << num_array[i] << " "; 
     }
