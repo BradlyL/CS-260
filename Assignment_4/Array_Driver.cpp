@@ -1,61 +1,10 @@
 #include <iostream>
+#include <cassert>
+#include "Array_func.h"
 
 using namespace std;
 
-//Adds values into lists, by shifting values and placing new value in the designated spot.
-
 //I have the remove function that doesn't print the whole array to show what it's supposed to do which is make the array smaller.
-
-int* array_add(int n, int input_value, int arr[], int position) {
-    int i;
-
-    n++;
-
-    for (i=n; i>=position; i--) {
-        arr[i] = arr[i-1];
-
-    }
-
-    arr[position - 1] = input_value;
-
-    return arr;
-}
-
-
-
-int *array_remove(int n, int arr[], int position) {
-    int i;
-
-    int *new_arr = new int[n-1];
-
-    n--;
-
-    for (i = position - 1; i < n; i++) {
-        new_arr[i] = arr[i+1];
-
-    }
-
-
-    //Decided against this operation as it is very expensive. (And it wasn't working lol)
-
-    //std::copy(arr, arr+std::min(n, n-1), new_arr);
-    //delete [] arr;
-    //arr = new_arr;
-
-    for (i = position - 1; i < n; i++) {
-        arr[i] = new_arr[i];
-
-    }
-
-    arr[n] = -1;
-    
-    return arr;
-
-}
-
-void array_position(int *arr, int position) {
-    cout << arr[position];
-}
 
 int main(int argc, char** argv) {
     int i, position, n;
@@ -86,11 +35,10 @@ int main(int argc, char** argv) {
     cout << endl;
     cout << endl;
 
-
-    cout << "Would you like to add to, remove from, or show the contents of the array? (0 = Add, 1 = Remove, 2 Show) ";
+    cout << "Would you like to add to, remove from, or show the contents of the array? (0 = Add, 1 = Remove, 2 Show, 3 Test) ";
     cin >> choice_value;
     
-
+    //Opted towards switch menu.
     switch (choice_value)
     {
     case 0:
@@ -102,12 +50,25 @@ int main(int argc, char** argv) {
         
         array_add(n, add_value, num_array, index_value);
 
+        //Print array after
+        cout << "Resulting array: ";
+        for (i = 0; i < n; i++) {
+            cout << num_array[i] << " "; 
+        }
+
+
         break;
     case 1:
 
         cout << "Enter index to remove value from array: ";
         cin >> index_value;
         array_remove(n, num_array, index_value);
+
+        //Print array after
+        cout << "Resulting array: ";
+        for (i = 0; i < n; i++) {
+            cout << num_array[i] << " "; 
+        }
 
         break;
 
@@ -116,7 +77,35 @@ int main(int argc, char** argv) {
         cout << "Enter index of array to show: ";
         cin >> index_value;
 
+        cout << "Position: ";
         array_position(num_array, index_value);
+
+        break;
+
+    case 3:
+
+        cout << "Enter value to insert into test function to add: ";
+        cin >> add_value;
+        cout << "Enter index to add value to test function, same index will be removed, and then showed: ";
+        cin >> index_value;
+
+        test_add(n, add_value, num_array, index_value);
+
+        cout << "Resulting array (Adding): ";
+
+        for (i = 0; i < n; i++) {
+            cout << num_array[i] << " "; 
+        }
+
+        test_remove(n, num_array, index_value);
+
+        cout << "Resulting array (Removing): ";
+
+        for (i = 0; i < n; i++) {
+            cout << num_array[i] << " "; 
+        }
+        cout << endl << "Position: ";
+        test_position(num_array, index_value);
 
         break;
 
@@ -128,10 +117,10 @@ int main(int argc, char** argv) {
     cout << endl;
 
     //Print array after
-    cout << "Resulting array: ";
-    for (i = 0; i < n; i++) {
-        cout << num_array[i] << " "; 
-    }
+    //cout << "Resulting array: ";
+    //for (i = 0; i < n; i++) {
+    //    cout << num_array[i] << " "; 
+    //}
 
     cout << endl <<  "Goodbye.";
 
