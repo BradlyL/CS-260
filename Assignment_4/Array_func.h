@@ -1,4 +1,6 @@
+#include <iostream>
 using namespace std;
+
 //Adds values into lists, by shifting values and placing new value in the designated spot.
 int* array_add(int n, int input_value, int arr[], int position) {
     int i;
@@ -23,14 +25,6 @@ int *array_remove(int n, int arr[], int position) {
         arr[i] = arr[i+1];
 
     }
-
-    //Decided against these operations as they were very expensive. (And it wasn't working lol)
-    //std::copy(arr, arr+std::min(n, n-1), new_arr);
-    //delete [] arr;
-    //arr = new_arr;
-    //for (i = position - 1; i < n; i++) {
-    //    arr[i] = new_arr[i];
-    //}
 
     //Sets value to -1 to repersent array getting smaller.
     arr[n] = -1;
