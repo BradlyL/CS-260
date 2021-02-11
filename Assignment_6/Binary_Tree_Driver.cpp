@@ -4,7 +4,7 @@ using namespace std;
 
 int main(){
 
-
+    add_tree(5);
 
 
 

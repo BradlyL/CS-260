@@ -1,5 +1,5 @@
 struct node {
     int value;
-    node *left;
-    node *right;
+    node *left {nullptr};
+    node *right {nullptr};
 };
