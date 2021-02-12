@@ -1,5 +1,7 @@
 struct node {
     int value;
-    struct node *left {nullptr};
-    struct node *right {nullptr};
+    node *left = NULL;
+    node *right = NULL;
 };
+
+//Creation of node struct

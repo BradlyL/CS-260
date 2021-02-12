@@ -2,53 +2,45 @@
 #include "node.h"
 using namespace std;
 
+
+//From my understanding so far it seems that using classes is a great way to structure your code and to make certain things solidified into your code. 
+
 class BST {
     public:
-
-        void insert(int input);
+        node* insert(int input, node* root); //Insert values.
     private:
-        void add_tree(int input, node *new_node);
+        node* create_node(int input);
         void remove_tree(int input);
-        node *root;
+        node *root = NULL; // Set root to null, and make it unchangeable. So that the tree starts off empty.
 
 };
 
-//Public insert function, this allows us to access our private data within the class. In this all inputs are put through it to determine if it's created the root, or adding
-//onto additional nodes.
-void BST::insert(int input) {
-    if (root !=nullptr) {
-        add_tree(input, root);
-    } else {
-        root = new node;
-        root->value = input;
-        root->left = nullptr;
-        root->right = nullptr;
-    }
+//Node creation function.
+
+node* BST::create_node(int input) {
+    node* new_node = new node();
+    new_node->value = input;
+    new_node->left = new_node->right = NULL;
+
+    return new_node;
 }
 
-//This is the private function that creates the tree.
-void BST::add_tree(int input, node *new_node){
-    if (input < new_node->value) {
-        if (new_node->left == nullptr) {
-            add_tree(input, new_node->left);
-        } else {
-            new_node->left = new node;
-            new_node->left->value = input;
-            new_node->left->left = nullptr;
-            new_node->left->right = nullptr;
 
-        }
+//Public insert function, this allows us to access our private data within the class. In this all inputs are put through it to determine if it's created the root, or adding
+//onto additional nodes.
+
+node* BST::insert(int input, node* root) {
+    if (root == NULL) {
+        root = create_node(input);
+    } else if (input <= root->value){
+        root->left = insert(input, root->left);
+        //cout << root->left->value << endl; //test
     } else {
-        if (new_node->right == nullptr) {
-            add_tree(input, new_node->right);
-        } else {
-            new_node->right = new node;
-            new_node->right->value = input;
-            new_node->right->left = nullptr;
-            new_node->right->right = nullptr;
-        }
+        root->right = insert(input, root->right);
+        //cout << root->right->value << endl;  //test
     }
-}   
+    return root;
+}
 
 
 //Remove function

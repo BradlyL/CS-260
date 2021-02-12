@@ -3,12 +3,13 @@ using namespace std;
 #include "tree.h"
 
 int main(){
-    //Creating root number, how would you write the program to have first input insert into root?
+    //Initializing our binary search tree class in order to access public functions.
     BST bst;
-    bst.insert(7);
-    bst.insert(8);
-    //cout << endl << root->right;
-    cout << "test";
+
+    node* root = new node();
+    
+    bst.insert(7, root);
+    bst.insert(8, root);
 
     return 0;
 }
