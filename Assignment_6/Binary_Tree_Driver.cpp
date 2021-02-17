@@ -9,7 +9,12 @@ int main(){
     node* root = new node();
     
     bst.insert(7, root);
-    bst.insert(8, root);
+    bst.insert(9, root);
+    bst.insert(15, root);
+    bst.insert(6, root);
+    bst.insert(5, root);
+    bst.insert(1, root);
+    bst.insert(4, root);
 
     return 0;
 }
