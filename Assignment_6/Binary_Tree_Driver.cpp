@@ -8,6 +8,10 @@ int main(){
 
     node* root = new node();
     
+    //Test Functions
+    bst.test_insert();
+    bst.test_remove();
+
     bst.insert(7, root);
     bst.insert(9, root);
     bst.insert(15, root);
@@ -15,6 +19,9 @@ int main(){
     bst.insert(5, root);
     bst.insert(1, root);
     bst.insert(4, root);
+    bst.remove(4, root);
+    bst.remove(6, root);
+    bst.remove(7, root);
 
     return 0;
 }
