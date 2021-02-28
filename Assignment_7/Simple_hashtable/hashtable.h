@@ -1,6 +1,6 @@
 #include <iostream>
 #include <stdio.h>
-#include <string>
+#include <string> //Included to create array of strings
 using namespace std;
 
 class HT {
@@ -20,6 +20,7 @@ class HT {
 };  
 
 //Function to hash
+//Goes through character to character adding up ascii values to create a number and finds remainder. Remainder = index
 int HT::hasher(string val) {
     int hash=0;
     int index, i;
@@ -35,10 +36,12 @@ int HT::hasher(string val) {
 }
 
 //Function to insert
+//Inserts string at index value (Created by hasher function). Some people had questions whether it should be creating the value it stores in the index, or create the index.
+//In essence it'd be easy to do both. It seemed you didn't seem concerned about this though so I just created the index value.
 void HT::hash_insert(string val) {
     int index = hasher(val);
     hashmap[index] = val; 
-    //cout << hashmap[index] << endl << index << endl;//Test
+    //cout << hashmap[index] << endl << index << endl;//Test functionality
 }
 
 //Function to search
@@ -54,7 +57,7 @@ void HT::hash_search(string val) {
     cout << "Value not found";
 }
 
-//Function to possibly remove values
+//Function to remove values
 void HT::hash_remove(int val){
     if(val < 100) {
         if (val >= 0) {
@@ -63,12 +66,13 @@ void HT::hash_remove(int val){
             cout << "Value " << tmp << " removed at index " << val << endl;
         }
     }
+    //Keeps it within the arrays size.
     else {
         cout << "Index out of bounds.";
     }
 }
 
-//Tests
+//Test functions
 
 void HT::test_hash_insert() {
     hash_insert("Tester string.");
