@@ -1,6 +1,4 @@
-#include <iostream>
-#include <stdio.h>
-using namespace std;
+#include "table.h"
 
 class HT {
     public:
@@ -11,14 +9,24 @@ class HT {
         void test_hash_insert();
         void test_hash_search();
         void test_hash_remove();
+
     private: 
-        int hasher(int hash_val);
+        int hasher(string val);
 };
 
-//Function to hash_1
-int HT::hasher(int hash_val) {
+//Function to hash
+int HT::hasher(string val) {
+    int hash=0;
+    int index, i;
+    int index_length = val.length();
 
-    return hash_val;
+    for(i=0;i<index_length; i++) {
+        hash += val[i];
+    }
+
+    index = hash % 100;
+
+    return index;
 }
 
 //Function to insert
