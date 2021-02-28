@@ -1,13 +1,14 @@
 #include <iostream>
 #include <stdio.h>
 #include <string>
+#include <list> //Now that we have learned these data structures I opted to get familiar with the list library. I find this to be a lot more fun than using a tree.
 using namespace std;
 
 class HT {
     public:
         void hash_insert(string val);
         void hash_search(string val);
-        void hash_remove(int val);
+        void hash_remove(string val);
 
         void test_hash_insert();
         void test_hash_search();
@@ -16,10 +17,12 @@ class HT {
     private: 
         int hasher(string val);
         
-        std::string hashmap[100];
+        list<string> *ht = new list<string>[100]; //Constructing 100 linked lists. Did some research on differences between the list and vector libraries.
+        //https://thispointer.com/difference-between-vector-and-list-in-c/
 };  
 
 //Function to hash
+//Same hash function as previous hash table.
 int HT::hasher(string val) {
     int hash=0;
     int index, i;
@@ -35,44 +38,46 @@ int HT::hasher(string val) {
 }
 
 //Function to insert
+//Essentially same as before.
 void HT::hash_insert(string val) {
     int index = hasher(val);
-    hashmap[index] = val; 
-    //cout << hashmap[index] << endl << index << endl;//Test
+    ht[index].push_back(val); //Pushes value to back of list.
 }
 
 //Function to search
 void HT::hash_search(string val) {
-    int i;
-
-    for(i=0; i<100; i++) {
-        if(hashmap[i] == val) {
-            cout << "Found value at index: " << i << endl;
-            return;
+    int index = hasher(val);
+    list<string>::iterator i; 
+    for (i = ht[index].begin(); i != ht[index].end(); i++) { 
+      if (*i == val) {
+        cout << "Found: " << *i << endl;
+        return;
         }
     }
-    cout << "Value not found";
+    cout << "Not found " << val << endl;
 }
 
-//Function to possibly remove values
-void HT::hash_remove(int val){
-    if(val < 100) {
-        if (val >= 0) {
-            string tmp = hashmap[val];
-            hashmap[val] = -1; //-1 being an empty value
-            cout << "Value " << tmp << " removed at index " << val << endl;
+//Function to remove values
+//Very similar to search function! Except it erases value.
+void HT::hash_remove(string val){
+    int index = hasher(val);
+    list<string>::iterator i; 
+    for (i = ht[index].begin(); i != ht[index].end(); i++) { 
+      if (*i == val) {
+        cout << "Deleting: " << *i << endl;
+        ht[index].erase(i);
+        cout << "Erased " << val << endl << endl;
+        return;
         }
     }
-    else {
-        cout << "Index out of bounds.";
-    }
+    cout << "Not found.";
 }
 
 //Tests
 
 void HT::test_hash_insert() {
     hash_insert("Tester string.");
-    cout << "Insert function pass." << endl;
+    cout << "Insert function pass." << endl << endl;
 }
 
 void HT::test_hash_search() {
@@ -81,10 +86,10 @@ void HT::test_hash_search() {
     hash_search("jake");
     //Example of fail.
     hash_search("joe");
-    cout << endl << "Search function pass." << endl;
+    cout << endl << "Search function pass." << endl << endl;
 }
 
 void HT::test_hash_remove() {
-    hash_remove(11); //Index of jake.
-    cout << "Remove function pass." << endl;
+    hash_remove("jake");
+    cout << "Remove function pass." << endl << endl;
 }
