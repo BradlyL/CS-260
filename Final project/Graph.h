@@ -13,6 +13,7 @@ class graph {
 
     private:
         void printer();
+        vector<vector<int>> mat;
 };
 
 //Creates new vertices
