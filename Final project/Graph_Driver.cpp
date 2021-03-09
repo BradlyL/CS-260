@@ -1,9 +1,7 @@
-#include <stdio.h>
-#include <iostream>
-
-using namespace std;
+#include "Graph.h"
 
 int main (){
+//Adjacency Matrix used to define graph.
 
     return 0;
 }
