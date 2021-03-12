@@ -3,6 +3,12 @@
 int main (){
     //Adjacency Matrix used to define graph.
     graph g;
+	int graph[5][5]={
+		{0, 10, 20, 0, 0},
+		{10, 0, 0, 50, 10},
+		{20, 0, 0, 20, 33},
+		{0, 50, 20, 0, 20},
+		{0, 10, 33, 20, 0}};    
     g.create_matrix(7); //Create matrix of size 7
     g.add_vertex();
     g.add_vertex();
@@ -19,14 +25,14 @@ int main (){
     g.new_edge(5, 6, 6);
     g.new_edge(6, 7, 8);
     g.printer();
-    g.shortest_path(1,7); //Find shortest path from 1-7
+    g.shortest_path(graph,1); //Find shortest path from 1-7
     //Graph created (node) - weight
     // (1) -------- (2)
     // |      5      |11
     // |4            |
     // |            (4)
     // |    12       |5
-    // (3) -- (6)    |
+    // (3) -- (5)    |
     //      |  \6    |
     //     8|     \ (5)
     //     (7)
