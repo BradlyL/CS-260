@@ -1,0 +1,14 @@
+From my prior research this project, it seems that 2d arrays are in fact faster than using vectors which was my initial thought of how I should program this project. I believe there are a lot of points where I could make
+my code tighter and more efficient within both of these algorithms.
+
+Create_matrix() - This function runs at O(n^2) as it has to create nxn vertices.
+
+Add_edge() - This function runs at O(n+n) as it runs a O(n) function twice.
+
+Shortest path() - I'm not sure how the time multiplies while using for loops multiple times like how I did with the min function, but I'd assume it would keep squaring itself so O(n^(2*V))? Probably off on this.
+
+MST() - Somewhere around O((n-1)*n) I believe
+
+Printer() - O(n^2)
+
+I'm not sure if I did this portion correctly, but I believe this to at least ball park somewhere in the right direction.
