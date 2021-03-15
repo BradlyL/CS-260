@@ -106,15 +106,14 @@ void graph::mst(int mat_1[V][V]) {
 		int min = INT_MAX;
 		if (first_round != false) {
 			for (int j=0; j<V;j++) {
-				if (first_round != 1) {
 					if (mat_1[i][j] != 0 && visited[j] != true && unvisited[j] != -1) {
 						if (mat_1[i][j] <= min) {
 							min = mat_1[i][j];
 							tmp = j;
+							cout << endl << "min = " << min << endl;
 							first_round = false;
 						}
 					}
-				}
 			}
 		}
 		else {
@@ -122,13 +121,14 @@ void graph::mst(int mat_1[V][V]) {
 				if (mat_1[tmp][j] != 0 && visited[j] != true && unvisited[j] != -1) {
 					if (mat_1[tmp][j] <= min) {
 						min = mat_1[tmp][j];
+						cout << endl << "min = " << min << endl;
 						tmp = j;
 					}
 				}
 
 			}
 		}
-		cout << old_tmp << "--" << tmp << ": " << min;
+		cout << old_tmp << "--" << tmp << ": " << min << endl;
 		visited[tmp] = true;
 		unvisited[tmp] = -1;
 		old_tmp = tmp;
