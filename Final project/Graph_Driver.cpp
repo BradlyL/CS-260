@@ -7,25 +7,23 @@
 int main() 
 { 
 	graph g;
-	/*int graph1[V][V] = { { 0, 4, 0, 0, 0, 0, 0, 8, 0 }, 
-						{ 4, 0, 8, 0, 0, 0, 0, 11, 0 }, 
-						{ 0, 8, 0, 7, 0, 4, 0, 0, 2 }, 
-						{ 0, 0, 7, 0, 9, 14, 0, 0, 0 }, 
-						{ 0, 0, 0, 9, 0, 10, 0, 0, 0 }, 
-						{ 0, 0, 4, 14, 10, 0, 2, 0, 0 }, 
-						{ 0, 0, 0, 0, 0, 2, 0, 1, 6 }, 
-						{ 8, 11, 0, 0, 0, 0, 1, 0, 7 }, 
-						{ 0, 0, 2, 0, 0, 0, 6, 7, 0 } }; 
-	*/
-
+	int graph_1[V][V] = { 
+						{0,4,0,5,2}
+                       ,{4,0,1,3,0}
+                       ,{0,1,0,8,0}
+					   ,{5,3,8,0,2}
+					   ,{2,0,0,2,0}
+					   }; 
+	 // Testing graph
 	int graph[V][V];
 
+	//Menu / Matrix creation variables
 	bool menu = true;
 	int matrix_creation = 0;
 
 	do {
 		int choice;
-		cout << "Menu:\n1: Create matrix\n2: Add edge\n3: Shortest paths\n4: Minimum spanning tree\n5: Leave menu\n6: Print matrix\nEnter choice: ";
+		cout << "Menu:\n1: Create matrix\n2: Add edge\n3: Shortest paths\n4: Minimum spanning tree\n5: Print matrix\n6: Leave menu\nEnter choice: ";
 		cin >> choice;
 		switch (choice)
 		{
@@ -55,7 +53,8 @@ int main()
 				cout << "Enter weight: ";
 				cin >> weight;
 				g.add_edge(source, dest, weight);
-				cout << "Edge added.";
+				memcpy(graph, g.mat, sizeof g.mat); //Recopies contents of newly added edges each time.
+				cout << "Edge added." << endl;
 				break;
 			}
 
@@ -73,15 +72,10 @@ int main()
 			}
 		
 		case 4:
-			cout <<"Working: MST"; //g.mst();
-			menu = false;
+			g.mst(graph_1);			
 			break;
 
 		case 5:
-			cout << "Goodbye";
-			menu = false;
-			break;
-		case 6:
 			if (matrix_creation !=1) {
 				cout << "Please create a matrix before attempting to print it.";
 				break;
@@ -90,6 +84,11 @@ int main()
 				g.printer();
 				break;
 			}
+
+		case 6:
+			cout << "Goodbye";
+			menu = false;
+			break;
 
 		default:
 			cout << "No input try again.";
