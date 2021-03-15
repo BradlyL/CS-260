@@ -7,14 +7,14 @@
 int main() 
 { 
 	graph g;
-	int graph_1[V][V] = { 
+	/*int graph_1[V][V] = { 
 						{0,4,0,5,2}
                        ,{4,0,1,3,0}
                        ,{0,1,0,8,0}
 					   ,{5,3,8,0,2}
 					   ,{2,0,0,2,0}
 					   }; 
-	 // Testing graph
+	*/ // Testing graph
 	int graph[V][V];
 
 	//Menu / Matrix creation variables
@@ -72,7 +72,13 @@ int main()
 			}
 		
 		case 4:
-			g.mst(graph_1);			
+			if (matrix_creation !=1){
+				cout << "Please create a matrix before attempting to run minimum spanning tree algorithm.";
+				break;
+			}
+			else {
+				g.mst(graph);
+			}			
 			break;
 
 		case 5:

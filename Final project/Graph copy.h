@@ -91,7 +91,6 @@ void graph::mst(int mat_1[V][V]) {
 	int source = 0;
 	int tmp = source;
 	int old_tmp = source;
-	int new_tmp;
 	bool first_round = true;
 	int totalweight = 0;
 
@@ -110,7 +109,7 @@ void graph::mst(int mat_1[V][V]) {
 				if (mat_1[i][j] != 0 && visited[j] != true && unvisited[j] != -1) {
 					if (mat_1[i][j] <= min) {
 						min = mat_1[i][j];
-						new_tmp = j;
+						tmp = j;
 						first_round = false;
 					}
 				}
@@ -121,17 +120,19 @@ void graph::mst(int mat_1[V][V]) {
 				if (mat_1[tmp][j] != 0 && visited[j] != true && unvisited[j] != -1) {
 					if (mat_1[tmp][j] <= min) {
 						min = mat_1[tmp][j];
-						new_tmp = j;
+						//cout << endl << "j: " << j << endl;
+						cout << endl << "tmpbefore = " << tmp << "j: " << j << endl;
+						tmp = j;
+						cout << endl << "tmpafter = " << tmp << "j: " << j << endl;
 					}
 				}
 
 			}
 		}
-		cout << tmp << "--" << new_tmp << ": " << min << endl;
+		cout << old_tmp << "--" << tmp << ": " << min << endl;
 		visited[tmp] = true;
 		unvisited[tmp] = -1;
 		old_tmp = tmp;
-		tmp = new_tmp;
 		totalweight += min;
 	}
 
