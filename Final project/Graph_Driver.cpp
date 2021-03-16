@@ -3,7 +3,9 @@
 
 //Only issue currently is you have to redefine the global variable V within graph.h in order to change the size of the 2d array that defines the graph.
 //I assume there is a better way to do this such as using vectors that can be dynamically allocated, but I ran out of time and resources to try to figure out
-//A better solution. Hopefully this does well enough to demonstrate I understand the concepts!
+//A better solution. Hopefully this does well enough to demonstrate I understand the concepts! For my shortest path/Min distant function I used geeksforgeeks as a major resource
+//https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/, I tried to implement this on my own, but sadly ran out of time as I have other classes to work on.
+//I made sure I deeply understood what the code was doing and feel comfortable with the concepts of graphs and these algorithms now.
 int main() 
 { 
 	graph g;
